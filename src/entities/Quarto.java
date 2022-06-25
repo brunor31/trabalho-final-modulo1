@@ -1,6 +1,6 @@
 package entities;
 
-public class Quarto {
+public class Quarto extends Hotel {
 
     private Integer numero;
     private Integer tipo;

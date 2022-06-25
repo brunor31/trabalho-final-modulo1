@@ -24,6 +24,12 @@ public class Hotel {
         this.quartos = quartos;
         this.idHotel = idHotel;
     }
+    
+    public void imprimirQuartos() {
+        for (Quarto quarto: quartos) {
+            System.out.println(quarto);
+        }
+    }
 
     public void imprimirHotel(){
         System.out.println("Hotel: " + nome +

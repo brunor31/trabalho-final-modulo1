@@ -8,9 +8,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Program {
-    //ok
     public static void main(String[] args) throws ParseException {
-
+        
         Scanner sc = new Scanner(System.in);
         AtomicInteger n = new AtomicInteger();
         ArrayList<Reserva> minhasReservas = new ArrayList<>();
@@ -44,8 +43,8 @@ public class Program {
         Collections.addAll(hoteis, hotel1, hotel2, hotel3, hotel4);
         ArrayList<Quarto> quartos = new ArrayList<>();
         Collections.addAll(quartos, quarto1, quarto2, quarto3, quarto4, quarto5, quarto6, quarto7, quarto8, quarto9, quarto10, quarto11, quarto12);
-
-
+        
+        
         int opcao = 0;
         while (opcao != 5) {
             System.out.println("Digite 1 para criar reserva");
@@ -97,7 +96,7 @@ public class Program {
                     char continuar = sc.next().charAt(0);
                     Hotel hotelEscolhido = new Hotel();
                     List<Hotel> listaHoteis = hoteis.stream().
-                            filter(hotel -> hotel.getCidade() == result[selecionarCidade-1]).toList();
+                            filter(hotel -> hotel.getCidade() == result[selecionarCidade - 1]).toList();
                     listaHoteis.forEach(hotel -> {
                         hotelEscolhido.setNome(hotel.getNome());
                         hotelEscolhido.setEstado(hotel.getEstado());
@@ -148,6 +147,30 @@ public class Program {
                     List<Reserva> minhaReserva = minhasReservas.stream().
                             filter(reserva -> reserva.getCliente().getCpf().equals(cpf)).toList();
                     minhaReserva.forEach(System.out::println);
+                }
+                case 3 -> {
+                    System.out.println();
+                    System.out.print("Digite seu cpf: ");
+                    String cpf = sc.next();
+                    minhasReservas.stream().filter(reserva -> reserva.getCliente().getCpf().equals(cpf)).forEach(System.out::println);
+                    System.out.println("Quais campos deseja modificar ");
+                    System.out.println("1: Quarto \n2: Data de Entrada (dd/MM/yyyy) \n3: Data de Saida (dd/MM/yyyy)");
+                    System.out.print("Opcao desejada: ");
+                    int escolha = sc.nextInt();
+                    switch (escolha) {
+                        case 1 -> {
+                            minhasReservas.stream().filter(reserva -> reserva.getCliente().getCpf().equals(cpf)).forEach(reserva -> reserva.getHotel().imprimirQuartos());
+                            System.out.println("Qual quarto deseja selecionar: ");
+                            int num = sc.nextInt();
+                            
+                            List<Reserva> quartoMod = minhasReservas.stream().filter(reserva -> reserva.getQuarto().getNumero() == num).toList();
+                            Reserva reseraNova = new Reserva();
+                            quartoMod.stream().forEach(a -> {
+                                reseraNova.getQuarto().setNumero(num);
+                            });
+                           // administrarReserva.processarReserva(reseraNova);
+                        }
+                    }
                 }
             }
         }
