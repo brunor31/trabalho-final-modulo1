@@ -74,59 +74,57 @@ public class Program {
                     int selecionarCidade = sc.nextInt();
                     sc.nextLine();
                     System.out.println("Hotel Disponível: ");
-                    final String [] result = {"Porto Alegre", "Florianópolis", "São Paulo", "Rio de Janeiro"};
-                    switch (selecionarCidade){
-                        case 1 -> {
-                            List<Hotel> hotelDisponivelCidade = hoteis.stream().filter(hotel -> hotel.getCidade() == result[selecionarCidade - 1]).toList();
-                            hotelDisponivelCidade.stream().forEach(System.out::println);
-                            System.out.println();
-                            System.out.print("Você deseja realizar a reserva? (s/n): ");
-                            char reservar = sc.next().charAt(0);
-                            if (reservar == 's') {
-                                System.out.println();
-                                System.out.println("Quartos Disponíveis: ");
-                                System.out.println();
-                                quartosHotel1.stream().forEach(System.out::println);
-                            }
-                            else {
-                                break;
-                            }
-                            System.out.println();
-                            System.out.print("Deseja continuar com a reserva: (s/n): ");
-                            char continuar = sc.next().charAt(0);
-                            if (continuar == 's'){
-                                Cliente cliente = new Cliente();
-                                sc.nextLine();
-                                System.out.print("Digite o nome: ");
-                                cliente.setNome(sc.nextLine());
-                                System.out.print("Digite o cpf: ");
-                                cliente.setCpf(sc.nextLine());
-                                System.out.print("Digite o telefone para contato: ");
-                                cliente.setTelefone(sc.nextLine());
-                                System.out.print("Digite o email: ");
-                                cliente.setEmail(sc.nextLine());
-                                cliente.setId(n.incrementAndGet());
-                                System.out.print("Digite o número do quarto que você deseja alugar: ");
-                                int escolhaDoQuarto = sc.nextInt();
-                                Optional<Quarto> meuQuarto = quartosHotel1.stream().
-                                        filter(hotel -> hotel.getNumero().equals(escolhaDoQuarto)).
-                                        findFirst();
-                                meuQuarto.get();
-                                Quarto novoQuarto = new Quarto();
-                                System.out.println(meuQuarto);
-                                System.out.print("Digite a data de entrada (dd/MM/yyyy): ");
-                                String dataEntrada = sc.next();
-                                System.out.print("Digite a data de saída (dd/MM/yyyy): ");
-                                String dataSaida = sc.next();
-                            }
-                        }
+                    final String[] result = {"Porto Alegre", "Florianópolis", "São Paulo", "Rio de Janeiro"};
+                    List<Hotel> hotelDisponivelCidade = hoteis.stream().filter(hotel -> hotel.getCidade() == result[selecionarCidade - 1]).toList();
+                    hotelDisponivelCidade.stream().forEach(System.out::println);
+                    System.out.println();
+                    System.out.print("Você deseja realizar a reserva? (s/n): ");
+                    char reservar = sc.next().charAt(0);
+                    if (reservar == 's') {
+                        System.out.println();
+                        System.out.println("Quartos Disponíveis: ");
+                        System.out.println();
+                        quartos.stream().forEach(System.out::println);
+                    } else {
+                        break;
+                    }
+                    System.out.println();
+                    System.out.print("Deseja continuar com a reserva: (s/n): ");
+                    char continuar = sc.next().charAt(0);
+                    if (continuar == 's') {
+                        Cliente cliente = new Cliente();
+                        sc.nextLine();
+                        System.out.print("Digite o nome: ");
+                        cliente.setNome(sc.nextLine());
+                        System.out.print("Digite o cpf: ");
+                        cliente.setCpf(sc.nextLine());
+                        System.out.print("Digite o telefone para contato: ");
+                        cliente.setTelefone(sc.nextLine());
+                        System.out.print("Digite o email: ");
+                        cliente.setEmail(sc.nextLine());
+                        cliente.setId(n.incrementAndGet());
+                        System.out.print("Digite o número do quarto que você deseja alugar: ");
+                        int escolhaDoQuarto = sc.nextInt();
+                        List<Quarto> meuQuarto = quartos.stream().
+                                filter(hotel -> hotel.getNumero().equals(escolhaDoQuarto)).toList();
+                        Quarto novoQuarto = new Quarto();
+                        meuQuarto.forEach(quarto -> {
+                            novoQuarto.setIdQuarto(quarto.getIdQuarto());
+                            novoQuarto.setNumero(quarto.getNumero());
+                            novoQuarto.setTipo(quarto.getTipo());
+                            novoQuarto.setDescricao(quarto.getDescricao());
+                            novoQuarto.setDisponibilidade(quarto.isDisponibilidade());
+                            novoQuarto.setPrecoDiaria(quarto.getPrecoDiaria());
+                        });
+                        System.out.print("Digite a data de entrada (dd/MM/yyyy): ");
+                        String dataEntrada = sc.next();
+                        System.out.print("Digite a data de saída (dd/MM/yyyy): ");
+                        String dataSaida = sc.next();
+                        Reserva reserva = new Reserva(hotel1, novoQuarto, cliente, dataEntrada, dataSaida, n.incrementAndGet());
+                        reserva.imprimirReserva();
                     }
                 }
             }
         }
-
     }
 }
-
-/*
-*/
