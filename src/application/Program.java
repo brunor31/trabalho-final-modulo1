@@ -87,7 +87,8 @@ public class Program {
                         System.out.println();
                         System.out.println("Quartos Disponíveis: ");
                         System.out.println();
-                        quartos.stream().forEach(System.out::println);
+                        List<Quarto> quartoHotel = hotelDisponivelCidade.get(0).getQuartos();
+                        quartoHotel.stream().forEach(System.out::println);
                     } else {
                         break;
                     }
