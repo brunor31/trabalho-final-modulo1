@@ -1,2 +1,7 @@
-package services;public interface ProcessarReserva {
+package services;
+
+import entities.Reserva;
+
+public interface ProcessarReserva {
+    public void processarReserva(Reserva reserva);
 }

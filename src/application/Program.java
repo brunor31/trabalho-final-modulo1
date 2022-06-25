@@ -5,6 +5,7 @@ import entities.*;
 import java.text.ParseException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class Program {
 
@@ -12,7 +13,9 @@ public class Program {
 
         Scanner sc = new Scanner(System.in);
         AtomicInteger n = new AtomicInteger();
+        ArrayList<Reserva> minhasReservas = new ArrayList<>();
         AdministrarReserva administrarReserva = new AdministrarReserva();
+        administrarReserva.setReservas(minhasReservas);
         Quarto quarto1 = new Quarto(101, 1, "Quarto Individual", true, 200.00, n.incrementAndGet());
         Quarto quarto2 = new Quarto(201, 2, "Suite", true, 300.00, n.incrementAndGet());
         Quarto quarto3 = new Quarto(301, 1, "Quarto Individual", true, 220.00, n.incrementAndGet());
@@ -91,6 +94,18 @@ public class Program {
                     System.out.println();
                     System.out.print("Deseja continuar com a reserva: (s/n): ");
                     char continuar = sc.next().charAt(0);
+                    Hotel hotelEscolhido = new Hotel();
+                    List<Hotel> listaHoteis = hoteis.stream().
+                            filter(hotel -> hotel.getCidade() == result[selecionarCidade-1]).toList();
+                    listaHoteis.forEach(hotel -> {
+                        hotelEscolhido.setNome(hotel.getNome());
+                        hotelEscolhido.setEstado(hotel.getEstado());
+                        hotelEscolhido.setCidade(hotel.getCidade());
+                        hotelEscolhido.setTelefone(hotel.getTelefone());
+                        hotelEscolhido.setClassificacao(hotel.getClassificacao());
+                        hotelEscolhido.setQuartos(hotel.getQuartos());
+                        hotelEscolhido.setIdHotel(hotel.getIdHotel());
+                    });
                     if (continuar == 's') {
                         Cliente cliente = new Cliente();
                         sc.nextLine();
@@ -120,9 +135,18 @@ public class Program {
                         String dataEntrada = sc.next();
                         System.out.print("Digite a data de saída (dd/MM/yyyy): ");
                         String dataSaida = sc.next();
-                        Reserva reserva = new Reserva(hotel1, novoQuarto, cliente, dataEntrada, dataSaida, n.incrementAndGet());
+                        Reserva reserva = new Reserva(hotelEscolhido, novoQuarto, cliente, dataEntrada, dataSaida, n.incrementAndGet());
                         reserva.imprimirReserva();
+                        administrarReserva.processarReserva(reserva);
                     }
+                }
+                case 2 -> {
+                    System.out.println();
+                    System.out.print("Digite seu CPF: ");
+                    String cpf = sc.next();
+                    List<Reserva> minhaReserva = minhasReservas.stream().
+                            filter(reserva -> reserva.getCliente().getCpf().equals(cpf)).toList();
+                    minhaReserva.forEach(System.out::println);
                 }
             }
         }
