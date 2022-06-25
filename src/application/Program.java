@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Program {
-
+    //ok
     public static void main(String[] args) throws ParseException {
 
         Scanner sc = new Scanner(System.in);
