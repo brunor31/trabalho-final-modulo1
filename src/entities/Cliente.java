@@ -1,7 +1,6 @@
 package entities;
 
 public class Cliente {
-
     private String nome;
     private String cpf;
     private String telefone;
@@ -59,10 +58,11 @@ public class Cliente {
         this.idCliente = idCliente;
     }
 
-    public void imprimirCliente(){
+    public void imprimirCliente() {
         System.out.println(this);
     }
-    public String toString(){
+
+    public String toString() {
         return "Nome: " + nome +
                 "\nCpf: " + cpf +
                 "\nTelefone: " + telefone +
