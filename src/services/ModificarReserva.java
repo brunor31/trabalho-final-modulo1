@@ -6,6 +6,6 @@ import java.util.Date;
 
 public interface ModificarReserva {
 
-    public void modificarReserva(String cpf, int numero, Date dataEntrada, Date dataSaida);
+    public void modificarReserva(Integer id, int numero, Date dataEntrada, Date dataSaida);
 
 }

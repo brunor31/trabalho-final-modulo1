@@ -93,6 +93,7 @@ public class Reserva {
                 "\nData de Entrada: " + sdf.format(dataEntrada) +
                 "\nData de Saída: " + sdf.format(dataSaida) +
                 "\nQuantidade de diárias: " + imprimirDiarias() +
-                "\nValor da Reserva: " + String.format("%.2f", calcularDiarias());
+                "\nValor da Reserva: " + String.format("%.2f", calcularDiarias()) +
+                "\n";
     }
 }

@@ -2,6 +2,6 @@ package services;
 
 import entities.Reserva;
 public interface CancelarReserva {
-    public void cancelarReserva(String cpf);
+    public void cancelarReserva(Integer id);
 
 }

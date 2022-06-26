@@ -93,6 +93,8 @@ public class Main {
                             hotelEscolhido.setQuartos(hotel.getQuartos());
                             hotelEscolhido.setIdHotel(hotel.getIdHotel());
                         });
+                        System.out.print("Digite o número do quarto que você deseja alugar: ");
+                        int escolhaDoQuarto = sc.nextInt();
                         Cliente cliente = new Cliente();
                         sc.nextLine();
                         System.out.print("Digite o nome: ");
@@ -104,8 +106,6 @@ public class Main {
                         System.out.print("Digite o email: ");
                         cliente.setEmail(sc.nextLine());
                         cliente.setId(id.incrementAndGet());
-                        System.out.print("Digite o número do quarto que você deseja alugar: ");
-                        int escolhaDoQuarto = sc.nextInt();
                         List<Quarto> meuQuarto = quartos.stream().
                                 filter(hotel -> hotel.getNumero().equals(escolhaDoQuarto)).toList();
                         Quarto novoQuarto = new Quarto();
@@ -124,7 +124,6 @@ public class Main {
                         System.out.println();
                         System.out.println("Reserva concluida com sucesso!");
                         reserva.imprimirReserva();
-                        System.out.println();
                         manipularReserva.processarReserva(reserva);
                     }
                 }
@@ -132,11 +131,18 @@ public class Main {
                     System.out.print("Digite seu CPF: ");
                     String cpf = sc.next();
                     manipularReserva.imprimirReserva(cpf);
+                    System.out.println();
                 }
                 case 3 -> {
                     System.out.print("Digite seu CPF: ");
                     String cpf = sc.next();
-                    manipularReserva.imprimirQuartosDisponiveis(cpf);
+                    manipularReserva.imprimirReserva(cpf);
+                    System.out.println();
+                    System.out.print("Digite o id da reserva: ");
+                    Integer idReserva = sc.nextInt();
+                    sc.nextLine();
+                    System.out.println();
+                    manipularReserva.imprimirQuartosDisponiveis(idReserva);
                     System.out.print("Digite o número do quarto escolhido: ");
                     Integer numeroQuarto = sc.nextInt();
                     sc.nextLine();
@@ -144,19 +150,26 @@ public class Main {
                     Date dataEntrada = sdf.parse(sc.next());
                     System.out.print("Digite a data de entrada (dd/MM/yyyy): ");
                     Date dataSaida = sdf.parse(sc.next());
-                    manipularReserva.modificarReserva(cpf, numeroQuarto, dataEntrada,dataSaida);
+                    manipularReserva.modificarReserva(idReserva, numeroQuarto, dataEntrada,dataSaida);
+                    System.out.println();
                     System.out.println("Reserva modificada com sucesso!");
+                    System.out.println();
                 }
                 case 4 -> {
                     System.out.print("Digite seu CPF: ");
                     String cpf = sc.next();
                     manipularReserva.imprimirReserva(cpf);
                     System.out.println();
+                    System.out.print("Digite o id da reserva: ");
+                    Integer idReserva = sc.nextInt();
+                    sc.nextLine();
+                    System.out.println();
                     System.out.print("Você deseja realmente cancelar a reserva? (s/n): ");
                     char cancelarReserva = sc.next().charAt(0);
                     if (cancelarReserva == 's'){
-                        manipularReserva.cancelarReserva(cpf);
+                        manipularReserva.cancelarReserva(idReserva);
                         System.out.println("Reserva cancelada com sucesso!");
+                        System.out.println();
                     }
                 }
             }

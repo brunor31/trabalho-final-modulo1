@@ -29,22 +29,22 @@ public class ManipularReserva implements ProcessarReserva, ModificarReserva, Can
         this.reservas.add(reserva);
     }
 
-    public void imprimirQuartosDisponiveis(String cpf) {
-        List<Reserva> imprimirQuartos = reservas.stream().filter(reserva -> reserva.getCliente().getCpf().equals(cpf)).toList();
+    public void imprimirQuartosDisponiveis(Integer id) {
+        List<Reserva> imprimirQuartos = reservas.stream().filter(reserva -> reserva.getIdReserva().equals(id)).toList();
         imprimirQuartos.stream().forEach(reserva -> reserva.getHotel().imprimirQuartos());
     }
 
     @Override
-    public void modificarReserva(String cpf, int numero, Date dataEntrada, Date dataSaida) {
-        List<Reserva> modificacao = reservas.stream().filter(reserva -> reserva.getCliente().getCpf().equals(cpf)).toList();
+    public void modificarReserva(Integer id, int numero, Date dataEntrada, Date dataSaida) {
+        List<Reserva> modificacao = reservas.stream().filter(reserva -> reserva.getIdReserva().equals(id)).toList();
         modificacao.stream().forEach(reserva -> reserva.getQuarto().setNumero(numero));
         modificacao.stream().forEach(reserva -> reserva.setDataEntrada(dataEntrada));
         modificacao.stream().forEach(reserva -> reserva.setDataSaida(dataSaida));
     }
 
     @Override
-    public void cancelarReserva(String cpf) {
-        List<Reserva> cancelamento = reservas.stream().filter(reserva -> reserva.getCliente().getCpf().equals(cpf)).toList();
+    public void cancelarReserva(Integer id) {
+        List<Reserva> cancelamento = reservas.stream().filter(reserva -> reserva.getIdReserva().equals(id)).toList();
         reservas.removeAll(cancelamento);
     }
 
