@@ -136,13 +136,28 @@ public class Main {
                 case 3 -> {
                     System.out.print("Digite seu CPF: ");
                     String cpf = sc.next();
-
+                    manipularReserva.imprimirQuartosDisponiveis(cpf);
+                    System.out.print("Digite o número do quarto escolhido: ");
+                    Integer numeroQuarto = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Digite a data de entrada (dd/MM/yyyy): ");
+                    Date dataEntrada = sdf.parse(sc.next());
+                    System.out.print("Digite a data de entrada (dd/MM/yyyy): ");
+                    Date dataSaida = sdf.parse(sc.next());
+                    manipularReserva.modificarReserva(cpf, numeroQuarto, dataEntrada,dataSaida);
+                    System.out.println("Reserva modificada com sucesso!");
                 }
                 case 4 -> {
                     System.out.print("Digite seu CPF: ");
                     String cpf = sc.next();
-                    manipularReserva.cancelarReserva(cpf);
-                    System.out.println("Reserva cancelada com sucesso!");
+                    manipularReserva.imprimirReserva(cpf);
+                    System.out.println();
+                    System.out.print("Você deseja realmente cancelar a reserva? (s/n): ");
+                    char cancelarReserva = sc.next().charAt(0);
+                    if (cancelarReserva == 's'){
+                        manipularReserva.cancelarReserva(cpf);
+                        System.out.println("Reserva cancelada com sucesso!");
+                    }
                 }
             }
         }
