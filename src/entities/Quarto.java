@@ -1,6 +1,6 @@
 package entities;
 
-public class Quarto extends Hotel{
+public class Quarto {
     private Integer numero;
     private String tipo;
     private boolean disponibilidade;
@@ -8,11 +8,7 @@ public class Quarto extends Hotel{
     private Integer idQuarto;
 
     public boolean verificarDisponibilidade() {
-        if (disponibilidade) {
-            return true;
-        } else {
-            return false;
-        }
+        return disponibilidade;
     }
     public void imprimirQuarto() {
         String ehDisponivel = "Disponível";
@@ -30,7 +26,8 @@ public class Quarto extends Hotel{
     public String toString() {
         return "Quarto: " + numero +
                 "\nTipo: " + tipo +
-                "\nPreço da diária: " + String.format("%.2f", precoDiaria);
+                "\nPreço da diária: " + String.format("%.2f", precoDiaria) +
+                "\n";
     }
 
     public Quarto() {

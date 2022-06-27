@@ -88,7 +88,8 @@ public class Hotel {
         return "Nome: " + nome +
                 "\nCidade: " + cidade +
                 "\nClassificação: " + classificacao + " Estrelas" +
-                "\nTelefone: " + telefone;
+                "\nTelefone: " + telefone +
+                "\n";
     }
 }
 

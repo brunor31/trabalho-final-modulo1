@@ -36,10 +36,12 @@ public class ManipularReserva implements ProcessarReserva, ModificarReserva, Can
 
     @Override
     public void modificarReserva(Integer id, int numero, Date dataEntrada, Date dataSaida) {
-        List<Reserva> modificacao = reservas.stream().filter(reserva -> reserva.getIdReserva().equals(id)).toList();
-        modificacao.stream().forEach(reserva -> reserva.getQuarto().setNumero(numero));
-        modificacao.stream().forEach(reserva -> reserva.setDataEntrada(dataEntrada));
-        modificacao.stream().forEach(reserva -> reserva.setDataSaida(dataSaida));
+        Reserva modificacao = reservas.stream()
+                .filter(reserva -> reserva.getIdReserva().equals(id))
+                .findFirst().get();
+        modificacao.getQuarto().setNumero(numero);
+        modificacao.setDataEntrada(dataEntrada);
+        modificacao.setDataSaida(dataSaida);
     }
 
     @Override

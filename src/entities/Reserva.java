@@ -33,9 +33,6 @@ public class Reserva {
         Double valorTotal = imprimirDiarias() * quarto.getPrecoDiaria();
         return valorTotal;
     }
-    public void imprimirReserva(){
-        System.out.println(this);
-    }
     public Quarto getQuarto() {
         return quarto;
     }
