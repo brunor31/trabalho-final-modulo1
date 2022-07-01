@@ -62,10 +62,10 @@ INSERT INTO HOTEL (ID_HOTEL, NOME, CIDADE, TELEFONE, CLASSIFICACAO)
 VALUES (SEQ_HOTEL.nextval, 'Ibis', 'Porto Alegre', '5135458100', 5);
 
 INSERT INTO HOTEL (ID_HOTEL, NOME, CIDADE, TELEFONE, CLASSIFICACAO)
-VALUES (SEQ_HOTEL.nextval, 'Light Aurora Resort', 'Florianópolis', '493541000', 5);
+VALUES (SEQ_HOTEL.nextval, 'Light Aurora Resort', 'FlorianÃ³polis', '493541000', 5);
 
 INSERT INTO HOTEL (ID_HOTEL, NOME, CIDADE, TELEFONE, CLASSIFICACAO)
-VALUES (SEQ_HOTEL.nextval, 'Quality Suites', 'São Paulo', '1140112549', 4);
+VALUES (SEQ_HOTEL.nextval, 'Quality Suites', 'SÃ£o Paulo', '1140112549', 4);
 
 INSERT INTO HOTEL (ID_HOTEL, NOME, CIDADE, TELEFONE, CLASSIFICACAO)
 VALUES (SEQ_HOTEL.nextval, 'Primme Hotel', 'Rio de Janeiro', '2136481111', 5);
@@ -111,6 +111,3 @@ VALUES (SEQ_RESERVA.nextval, 2, 2,2, to_date('10/09/2022', 'dd/mm/yyyy'), to_dat
 
 INSERT INTO RESERVA (ID_RESERVA, ID_HOTEL, ID_QUARTO, ID_CLIENTE, DATA_ENTRADA, DATA_SAIDA, TIPO, VALOR_RESERVA)
 VALUES (SEQ_RESERVA.nextval, 3, 3, 3, to_date('25/10/2022', 'dd/mm/yyyy'), to_date('05/11/2022', 'dd/mm/yyyy'), 0, 2425.50);
-
-
-
