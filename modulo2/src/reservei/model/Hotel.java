@@ -1,40 +1,34 @@
-package entities;
+package reservei.model;
 
 import java.util.List;
 
 public class Hotel {
 
+    private Integer idHotel;
     private String nome;
     private String cidade;
     private String telefone;
     private Integer classificacao;
     private List<Quarto> quartos;
-    private Integer idHotel;
 
-    public Hotel() {
+    public Hotel(){
     }
 
-    public Hotel(String nome, String cidade, String telefone, Integer classificacao, List<Quarto> quartos, Integer idHotel) {
+    public Hotel(String nome, String cidade, String telefone, Integer classificacao) {
         this.nome = nome;
         this.cidade = cidade;
         this.telefone = telefone;
         this.classificacao = classificacao;
-        this.quartos = quartos;
+    }
+
+    public Integer getIdHotel() {
+        return idHotel;
+    }
+
+    public void setIdHotel(Integer idHotel) {
         this.idHotel = idHotel;
     }
 
-    public void imprimirQuartos() {
-        for (Quarto quarto: quartos) {
-            System.out.println(quarto);
-        }
-    }
-    public void imprimirHotel(){
-        System.out.println("Hotel: " + nome +
-                "\nCidade: " + cidade +
-                "\nClassificação: " + classificacao + " Estrelas" +
-                "\nTelefone: " + telefone +
-                "\nIdHotel: " + idHotel);
-    }
     public String getNome() {
         return nome;
     }
@@ -74,22 +68,17 @@ public class Hotel {
     public void setQuartos(List<Quarto> quartos) {
         this.quartos = quartos;
     }
-
-    public Integer getIdHotel() {
-        return idHotel;
+    public void imprimirQuartos() {
+        for (Quarto quarto: quartos) {
+            System.out.println(quarto);
+        }
     }
-
-    public void setIdHotel(Integer idHotel) {
-        this.idHotel = idHotel;
-    }
-
     @Override
     public String toString() {
-        return "Nome: " + nome +
+        return "\nNome: " + nome +
                 "\nCidade: " + cidade +
                 "\nClassificação: " + classificacao + " Estrelas" +
                 "\nTelefone: " + telefone +
                 "\n";
     }
 }
-

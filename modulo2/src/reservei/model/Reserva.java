@@ -1,38 +1,53 @@
-package entities;
+package reservei.model;
 
+import reservei.enums.TipoReserva;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 public class Reserva {
+
+    private Integer idReserva;
     private Hotel hotel;
     private Quarto quarto;
     private Cliente cliente;
     private Date dataEntrada;
     private Date dataSaida;
-    private Integer idReserva;
+
+    private TipoReserva tipo;
+    private Double valorReserva;
+
     public static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public Reserva() {
     }
-    public Reserva(Hotel hotel, Quarto quarto, Cliente cliente, Date dataEntrada, Date dataSaida, Integer idReserva) {
+
+    public Reserva(Integer idReserva, Hotel hotel, Quarto quarto, Cliente cliente, Date dataEntrada, Date dataSaida, TipoReserva tipo, Double valorReserva) {
+        this.idReserva = idReserva;
         this.hotel = hotel;
         this.quarto = quarto;
         this.cliente = cliente;
         this.dataEntrada = dataEntrada;
         this.dataSaida = dataSaida;
+        this.tipo = tipo;
+        this.valorReserva = valorReserva;
+    }
+
+    public Integer getIdReserva() {
+        return idReserva;
+    }
+
+    public void setIdReserva(Integer idReserva) {
         this.idReserva = idReserva;
     }
-    public long imprimirDiarias(){
-        long diff = dataSaida.getTime() - dataEntrada.getTime();
-        TimeUnit time = TimeUnit.DAYS;
-        long diffrence = time.convert(diff, TimeUnit.MILLISECONDS);
-        return diffrence;
+
+    public Hotel getHotel() {
+        return hotel;
     }
-    public double calcularDiarias(){
-        Double valorTotal = imprimirDiarias() * quarto.getPrecoDiaria();
-        return valorTotal;
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
+
     public Quarto getQuarto() {
         return quarto;
     }
@@ -47,14 +62,6 @@ public class Reserva {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
-
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
     }
 
     public Date getDataEntrada() {
@@ -73,14 +80,23 @@ public class Reserva {
         this.dataSaida = dataSaida;
     }
 
-    public Integer getIdReserva() {
-        return idReserva;
+    public TipoReserva getTipo() {
+        return tipo;
     }
 
-    public void setIdReserva(Integer idReserva) {
-        this.idReserva = idReserva;
+    public void setTipo(TipoReserva tipo) {
+        this.tipo = tipo;
     }
 
+    public Double getValorReserva() {
+        return valorReserva;
+    }
+
+    public void setValorReserva(Double valorReserva) {
+        this.valorReserva = valorReserva;
+    }
+}
+    /*
     @Override
     public String toString() {
         return "IdReserva: " + idReserva +
@@ -89,8 +105,7 @@ public class Reserva {
                 "\nCliente: " + getCliente().getNome() +
                 "\nData de Entrada: " + sdf.format(dataEntrada) +
                 "\nData de Saída: " + sdf.format(dataSaida) +
-                "\nQuantidade de diárias: " + imprimirDiarias() +
                 "\nValor da Reserva: " + String.format("%.2f", calcularDiarias()) +
                 "\n";
-    }
 }
+     */

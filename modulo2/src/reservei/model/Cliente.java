@@ -1,20 +1,32 @@
-package entities;
+package reservei.model;
 
 public class Cliente {
+
+    private Integer idCliente;
     private String nome;
     private String cpf;
     private String telefone;
     private String email;
-    private Integer idCliente;
 
-    public Cliente() {
+    private String senha;
+
+    public Cliente(){
     }
 
-    public Cliente(String nome, String cpf, String telefone, String email, Integer idCliente) {
+    public Cliente(Integer idCliente, String nome, String cpf, String telefone, String email, String senha) {
+        this.idCliente = idCliente;
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
         this.email = email;
+        this.senha = senha;
+    }
+
+    public Integer getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
@@ -50,23 +62,19 @@ public class Cliente {
         this.email = email;
     }
 
-    public Integer getId() {
-        return idCliente;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setId(Integer idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public void imprimirCliente() {
-        System.out.println(this);
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String toString() {
-        return "Nome: " + nome +
+        return "IdCliente: " + idCliente +
+                "\nNome: " + nome +
                 "\nCpf: " + cpf +
                 "\nTelefone: " + telefone +
-                "\nEmail: " + email +
-                "\nIdCliente: " + idCliente;
+                "\nEmail: " + email;
     }
 }
