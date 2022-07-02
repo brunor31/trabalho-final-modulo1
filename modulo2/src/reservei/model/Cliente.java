@@ -75,6 +75,7 @@ public class Cliente {
                 "\nNome: " + nome +
                 "\nCpf: " + cpf +
                 "\nTelefone: " + telefone +
-                "\nEmail: " + email;
+                "\nEmail: " + email+
+                "\nSenha: " + senha;
     }
 }
