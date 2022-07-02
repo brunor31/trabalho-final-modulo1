@@ -4,8 +4,6 @@ import reservei.exceptions.DBException;
 import reservei.model.Hotel;
 import reservei.repository.HotelRepository;
 
-import java.util.Scanner;
-
 public class HotelService {
 
     private HotelRepository hotelRepository;
@@ -14,30 +12,47 @@ public class HotelService {
         hotelRepository = new HotelRepository();
     }
 
-    public void adicionarHotel() {
+    public void adicionarHotel(Hotel hotel) {
         try {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Nome: ");
-            String nome = sc.nextLine();
-            System.out.println("Cidade: ");
-            String cidade = sc.nextLine();
-            System.out.println("Telefone: (exp: DDD+Número)");
-            String telefone = sc.nextLine();
-            sc.nextLine();
-            while (telefone.length() > 14){
-                throw new DBException("Você digitou um telefone inválido, digite novamente: ");
+            if (hotel.getTelefone().length() > 14) {
+                throw new DBException("Você inseriu um telefone inválido");
             }
-            System.out.println("Classificação: (1 a 5)");
-            Integer classificacao = sc.nextInt();
-            sc.nextLine();
-            if ((classificacao < 1) || (classificacao > 5)) {
-                throw new DBException("Você digitou uma classificação inválida, digite novamente um valor entre 1 e 5: ");
+            if ((hotel.getClassificacao() < 1) || ((hotel.getClassificacao() > 5))) {
+                throw new Exception("Você digitou um valor inválido");
             }
-            Hotel hotel = new Hotel(nome, cidade, telefone, classificacao);
             hotelRepository.adicionar(hotel);
             System.out.println("Hotel adicionado com sucesso!");
         } catch (DBException e) {
             System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+            public void listarHoteis(){
+                try {
+                    hotelRepository.listar().forEach(System.out::println);
+                } catch (DBException e) {
+                    System.out.println("Error: " + e.getMessage());
+                }
+            }
+
+            public void editarHotel(Integer indice, Hotel hotel){
+                try {
+                    boolean deuCerto = hotelRepository.editar(indice, hotel);
+                    System.out.println("Edição concluída? " + deuCerto + "| com id=" + indice);
+                } catch (DBException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+
+            public void removerHotel(Integer id){
+                try {
+                    boolean deuCerto = hotelRepository.remover(id);
+                    System.out.println("Hotel excluído com sucesso? " + deuCerto + "| com id=" + id);
+                } catch (DBException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+
         }
     }
 }

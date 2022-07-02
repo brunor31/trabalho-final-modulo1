@@ -6,7 +6,8 @@ public enum TipoReserva {
     RESERVA_PREMIUM("Reserva Premium");
 
     private String descricao;
-    TipoReserva(String descricao){
+
+    TipoReserva(String descricao) {
         this.descricao = descricao;
     }
 

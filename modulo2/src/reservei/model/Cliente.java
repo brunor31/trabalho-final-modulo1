@@ -10,7 +10,7 @@ public class Cliente {
 
     private String senha;
 
-    public Cliente(){
+    public Cliente() {
     }
 
     public Cliente(Integer idCliente, String nome, String cpf, String telefone, String email, String senha) {

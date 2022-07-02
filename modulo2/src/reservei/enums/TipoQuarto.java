@@ -6,7 +6,8 @@ public enum TipoQuarto {
     QUARTO_CASAL("Quarto de casal");
 
     private String descricao;
-    TipoQuarto(String descricao){
+
+    TipoQuarto(String descricao) {
         this.descricao = descricao;
     }
 

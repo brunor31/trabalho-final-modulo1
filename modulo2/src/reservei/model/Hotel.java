@@ -11,7 +11,7 @@ public class Hotel {
     private Integer classificacao;
     private List<Quarto> quartos;
 
-    public Hotel(){
+    public Hotel() {
     }
 
     public Hotel(String nome, String cidade, String telefone, Integer classificacao) {
@@ -68,14 +68,17 @@ public class Hotel {
     public void setQuartos(List<Quarto> quartos) {
         this.quartos = quartos;
     }
+
     public void imprimirQuartos() {
-        for (Quarto quarto: quartos) {
+        for (Quarto quarto : quartos) {
             System.out.println(quarto);
         }
     }
+
     @Override
     public String toString() {
-        return "\nNome: " + nome +
+        return "IdHotel: " + idHotel +
+                "\nNome: " + nome +
                 "\nCidade: " + cidade +
                 "\nClassificação: " + classificacao + " Estrelas" +
                 "\nTelefone: " + telefone +
