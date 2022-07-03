@@ -2,6 +2,7 @@ package reservei.repository;
 
 import reservei.exceptions.DBException;
 import reservei.model.Hotel;
+import reservei.model.Quarto;
 
 import java.sql.*;
 import java.util.ArrayList;

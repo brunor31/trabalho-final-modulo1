@@ -176,6 +176,39 @@ public class Main {
                             Integer hotel = sc.nextInt();
                             sc.nextLine();
                             quartoService.listarQuartoPorHotel(hotel);
+                            System.out.println("Escolha o quarto que deseja realizar a reserva:");
+                            Integer quarto = sc.nextInt();
+                            sc.nextLine();
+                            System.out.println("Você já possui cadastro no site? (s/n)");
+                            char resposta = sc.next().charAt(0);
+                            if (resposta == 'n'){
+                                Cliente cliente = new Cliente();
+                                System.out.println("Digite o nome:");
+                                cliente.setNome(sc.nextLine());
+
+                                System.out.println("Digite o CPF:");
+                                cliente.setCpf(sc.nextLine());
+
+                                System.out.println("Digite o telefone: (DDD+Número)");
+                                cliente.setTelefone(sc.nextLine());
+
+                                System.out.println("Digite o email:");
+                                cliente.setEmail(sc.nextLine());
+
+                                System.out.println("Digite a senha:");
+                                cliente.setSenha(sc.nextLine());
+
+                                clienteService.adicionarCliente(cliente);
+
+                                Reserva reserva = new Reserva();
+                                
+                            }else if (resposta == 's'){
+                                System.out.println("Digite seu email:");
+                                String email = sc.next();
+                                System.out.println("Digite sua senha:");
+                                String senha = sc.next();
+                                clienteService.validarCliente(senha);
+                            }
                         }
                     }
 

@@ -53,4 +53,18 @@ public class ClienteService {
             System.out.println(e.getMessage());
         }
     }
+
+    public boolean validarCliente(String senha){
+        try{
+            if (clienteRepository.validarCliente(senha)){
+                System.out.println("Login efetuado com sucesso");
+            }else{
+                System.out.println("Usuário não encontrado");
+            }
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
 }

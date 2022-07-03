@@ -5,6 +5,9 @@ import reservei.enums.TipoQuarto;
 public class Quarto {
 
     private Integer idQuarto;
+
+    private Integer idHotel;
+
     private Integer numero;
     private TipoQuarto tipo;
     private Integer disponibilidade;
@@ -29,6 +32,13 @@ public class Quarto {
         this.idQuarto = idQuarto;
     }
 
+    public Integer getIdHotel() {
+        return idHotel;
+    }
+
+    public void setIdHotel(Integer idHotel) {
+        this.idHotel = idHotel;
+    }
     public Integer getNumero() {
         return numero;
     }

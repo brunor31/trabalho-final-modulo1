@@ -86,7 +86,7 @@ public class QuartoRepository implements Repositorio<Integer, Quarto> {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, id);
 
-            ResultSet res = stmt.executeQuery(sql);
+            ResultSet res = stmt.executeQuery();
 
             while (res.next()) {
                 Quarto quarto = getQuartoFromResultSet(res);
@@ -108,6 +108,7 @@ public class QuartoRepository implements Repositorio<Integer, Quarto> {
     private Quarto getQuartoFromResultSet(ResultSet res) throws SQLException {
         Quarto quarto = new Quarto();
         quarto.setIdQuarto(res.getInt("id_quarto"));
+        quarto.setIdHotel(res.getInt("id_hotel"));
         quarto.setNumero(res.getInt("numero"));
         quarto.setTipo(TipoQuarto.ofType(res.getInt("tipo")));
         quarto.setDisponibilidade(res.getInt("disponibilidade"));

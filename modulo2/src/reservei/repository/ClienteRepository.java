@@ -47,7 +47,7 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
             stmt.setString(3, cliente.getCpf());
             stmt.setString(4, cliente.getTelefone());
             stmt.setString(5, cliente.getEmail());
-            stmt.setString(6,cliente.getSenha());
+            stmt.setString(6, cliente.getSenha());
 
             int res = stmt.executeUpdate();
             System.out.println("adicionarCliente.res=" + res);
@@ -191,15 +191,45 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
             }
         }
     }
-    private Cliente getClienteFromResultSet(ResultSet res) throws SQLException{
-        Cliente cliente = new Cliente();
-        cliente.setIdCliente(res.getInt("id_cliente"));
-        cliente.setNome(res.getString("nome"));
-        cliente.setCpf(res.getString("cpf"));
-        cliente.setTelefone(res.getString("telefone"));
-        cliente.setEmail(res.getString("email"));
-        cliente.setSenha(res.getString("senha"));
-        return cliente;
+
+    public boolean validarCliente(String senha) {
+        Connection con = null;
+        try {
+            con = ConexaoDB.getConnection();
+            String sql = "SELECT c.* " +
+                    "FROM CLIENTE c " +
+                    "WHERE SENHA = ? ";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, senha);
+            int res = stmt.executeUpdate();
+            return res > 0;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
-}
+
+
+
+        private Cliente getClienteFromResultSet (ResultSet res) throws SQLException {
+            Cliente cliente = new Cliente();
+            cliente.setIdCliente(res.getInt("id_cliente"));
+            cliente.setNome(res.getString("nome"));
+            cliente.setCpf(res.getString("cpf"));
+            cliente.setTelefone(res.getString("telefone"));
+            cliente.setEmail(res.getString("email"));
+            cliente.setSenha(res.getString("senha"));
+            return cliente;
+        }
+    }
+
 
