@@ -1,17 +1,26 @@
 package reservei.enums;
 
+import java.util.Arrays;
+
 public enum TipoQuarto {
 
-    QUARTO_SOLTEIRO("Quarto de Solteiro"),
-    QUARTO_CASAL("Quarto de casal");
+    QUARTO_SOLTEIRO(1),
+    QUARTO_CASAL(2);
 
-    private String descricao;
+    private Integer type;
 
-    TipoQuarto(String descricao) {
-        this.descricao = descricao;
+    TipoQuarto(Integer tipo) {
+        this.type = tipo;
+    }
+    public Integer getType(){
+        return type;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public static TipoQuarto ofType(Integer tipo){
+        return Arrays.stream(TipoQuarto.values())
+                .filter(tp -> tp.getType().equals(tipo))
+                .findFirst()
+                .get();
     }
+
 }

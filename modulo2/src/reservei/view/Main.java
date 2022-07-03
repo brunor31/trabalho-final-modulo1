@@ -2,8 +2,12 @@ package reservei.view;
 
 import reservei.model.Cliente;
 import reservei.model.Hotel;
+import reservei.model.Quarto;
+import reservei.model.Reserva;
 import reservei.service.ClienteService;
 import reservei.service.HotelService;
+import reservei.service.QuartoService;
+import reservei.service.ReservaService;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -14,7 +18,9 @@ public class Main {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
         HotelService hotelService = new HotelService();
+        QuartoService quartoService = new QuartoService();
         ClienteService clienteService = new ClienteService();
+        ReservaService reservaService = new ReservaService();
         int opcao = 0;
         while (opcao != 4) {
             System.out.println("1: Menu Hotel");
@@ -88,7 +94,7 @@ public class Main {
                 case 2 -> {
                     int escolha = 0;
                     System.out.println("1: Cadastrar Cliente");
-                    System.out.println("2: Lista Clientes");
+                    System.out.println("2: Listar Clientes");
                     System.out.println("3: Editar Cliente");
                     System.out.println("4: Excluir Cliente");
                     escolha = sc.nextInt();
@@ -152,10 +158,29 @@ public class Main {
                             int id = sc.nextInt();
                             clienteService.removerCliente(id);
                         }
+
                     }
                 }
-            }
+                case 3 -> {
+                    int escolha = 0;
+                    System.out.println("1: Cadastrar Reserva");
+                    System.out.println("2: Listar Reservas");
+                    System.out.println("3: Editar Reserva");
+                    System.out.println("4: Excluir Reserva");
+                    escolha = sc.nextInt();
+                    switch (escolha) {
+                        case 1 -> {
+                            sc.nextLine();
+                            hotelService.listarHoteis();
+                            System.out.println("Escolha o hotel que deseja realizar a reserva:");
+                            Integer hotel = sc.nextInt();
+                            sc.nextLine();
+                            quartoService.listarQuartoPorHotel(hotel);
+                        }
+                    }
 
+                }
+            }
         }
     }
 }

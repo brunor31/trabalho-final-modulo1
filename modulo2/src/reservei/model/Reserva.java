@@ -13,7 +13,6 @@ public class Reserva {
     private Cliente cliente;
     private Date dataEntrada;
     private Date dataSaida;
-
     private TipoReserva tipo;
     private Double valorReserva;
 

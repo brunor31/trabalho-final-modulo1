@@ -55,4 +55,7 @@ public class HotelService {
         }
     }
 
+    public void listarQuartosHotel(Hotel hotel){
+        hotel.getQuartos().forEach(System.out::println);
+    }
 }

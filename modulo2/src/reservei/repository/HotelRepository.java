@@ -190,7 +190,6 @@ public class HotelRepository implements Repositorio<Integer, Hotel> {
             }
         }
     }
-
     private Hotel getHotelFromResultSet(ResultSet res) throws SQLException {
         Hotel hotel = new Hotel();
         hotel.setIdHotel(res.getInt("id_hotel"));

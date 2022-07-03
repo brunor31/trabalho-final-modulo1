@@ -1,19 +1,16 @@
 package reservei.service;
 
 import reservei.model.Reserva;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import reservei.repository.ReservaRepository;
 
 public class ReservaService {
 
-    private List<Reserva> reservas;
+    private ReservaRepository reservaRepository;
 
     public ReservaService (){
-        this.reservas = new ArrayList<>();
+        reservaRepository = new ReservaRepository();
     }
 
-    public void criarReserva(){
+    public void adicionarReserva(Reserva reserva) {
     }
 }

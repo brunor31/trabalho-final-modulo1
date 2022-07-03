@@ -65,7 +65,7 @@ public class Quarto {
     public String toString() {
         return "IdQuarto: " + idQuarto +
                 "\nQuarto: " + numero +
-                "\nTipo: " + tipo.getDescricao() +
+                "\nTipo: " + tipo.getType() +
                 "\nPreço da diária: " + String.format("%.2f", precoDiaria) +
                 "\n";
     }
