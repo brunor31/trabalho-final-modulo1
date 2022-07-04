@@ -39,6 +39,7 @@ public class Main {
                     System.out.println("2: Lista Hoteis");
                     System.out.println("3: Editar Hotel");
                     System.out.println("4: Excluir Hotel");
+                    System.out.println("5: Sair");
                     escolha = sc.nextInt();
                     switch (escolha) {
                         case 1 -> {
@@ -94,6 +95,9 @@ public class Main {
                             int id = sc.nextInt();
                             hotelService.removerHotel(id);
                         }
+                        case 5 -> {
+                            break;
+                        }
                     }
                 }
                 case 2 -> {
@@ -102,6 +106,7 @@ public class Main {
                     System.out.println("2: Listar Clientes");
                     System.out.println("3: Editar Cliente");
                     System.out.println("4: Excluir Cliente");
+                    System.out.println("5: Sair");
                     escolha = sc.nextInt();
                     switch (escolha) {
                         case 1 -> {
@@ -163,7 +168,9 @@ public class Main {
                             int id = sc.nextInt();
                             clienteService.removerCliente(id);
                         }
-
+                        case 5 -> {
+                            break;
+                        }
                     }
                 }
                 case 3 -> {
@@ -172,6 +179,7 @@ public class Main {
                     System.out.println("2: Listar Reservas");
                     System.out.println("3: Editar Reserva");
                     System.out.println("4: Excluir Reserva");
+                    System.out.println("5: Sair");
                     escolha = sc.nextInt();
                     switch (escolha) {
                         case 1 -> {
@@ -227,7 +235,7 @@ public class Main {
                                 System.out.println("Você possui desconto para assinantes premium? (s/n)");
                                 char clientePremium = sc.next().charAt(0);
 
-                                if (clientePremium == 's'){
+                                if (clientePremium == 's') {
                                     ReservaPremium reservaPremium = new ReservaPremium();
                                     reservaPremium.setHotel(hotelReserva);
                                     reservaPremium.setQuarto(quartoReserva);
@@ -248,23 +256,23 @@ public class Main {
                                     reserva.setTipo(TipoReserva.RESERVA_COMUM);
                                     reservaService.adicionarReserva(reserva);
                                 }
-                            }else if (resposta == 's'){
+                            } else if (resposta == 's') {
                                 System.out.println("Digite seu CPF:");
-                                String cpf=sc.next();
+                                String cpf = sc.next();
                                 System.out.println("Digite sua senha:");
                                 String senha = sc.next();
-                                clienteService.validarCliente(senha,cpf);
-                                Hotel hotelReserva=hotelService.hotelEscolhido(hotel);
-                                Quarto quartoReserva=quartoService.quartoEscolhido(quarto);
-                                Cliente clienteReserva=clienteService.clienteEscolhido(cpf);
+                                clienteService.validarCliente(senha, cpf);
+                                Hotel hotelReserva = hotelService.hotelEscolhido(hotel);
+                                Quarto quartoReserva = quartoService.quartoEscolhido(quarto);
+                                Cliente clienteReserva = clienteService.clienteEscolhido(cpf);
                                 System.out.println("Digite a data de entrada (dd/MM/yyyy)");
-                                String dataEntrada=sc.next();
+                                String dataEntrada = sc.next();
                                 System.out.println("Digite a data de saída: (dd/MM/yyyy)");
-                                String dataSaida=sc.next();
+                                String dataSaida = sc.next();
                                 System.out.println("Você possui desconto para assinantes premium? (s/n)");
                                 char clientePremium = sc.next().charAt(0);
 
-                                if (clientePremium == 's'){
+                                if (clientePremium == 's') {
                                     ReservaPremium reservaPremium = new ReservaPremium();
                                     reservaPremium.setHotel(hotelReserva);
                                     reservaPremium.setQuarto(quartoReserva);
@@ -304,10 +312,10 @@ public class Main {
                             Reserva reserva = new Reserva();
 
                             System.out.println("Digite a data de entrada (dd/MM/yyyy)");
-                            String dataEntrada=sc.next();
+                            String dataEntrada = sc.next();
 
                             System.out.println("Digite a data de saída: (dd/MM/yyyy)");
-                            String dataSaida=sc.next();
+                            String dataSaida = sc.next();
 
                             reserva.setDataEntrada(LocalDate.parse(dataEntrada, formatter));
                             reserva.setDataSaida(LocalDate.parse(dataSaida, formatter));
@@ -324,6 +332,9 @@ public class Main {
                             Integer id = sc.nextInt();
                             reservaService.excluirReserva(id);
 
+                        }
+                        case 5 -> {
+                            break;
                         }
                     }
 
