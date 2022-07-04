@@ -107,35 +107,22 @@ public class ReservaRepository implements Repositorio<Integer, Reserva> {
         Connection con = null;
         try {
             con = ConexaoDB.getConnection();
-
             StringBuilder sql = new StringBuilder();
-            sql.append("UPDATE Reserva SET \n");
-            reserva.toString();
-            if (reserva != null) {
-                if (reserva.getDataEntrada() != null)
-                    sql.append(" data_entrada = ?,");
-            }
-            if (reserva.getDataSaida() != null) {
-                sql.append(" data_saida = ?,");
-            }
-            sql.deleteCharAt(sql.length() - 1);
+            sql.append("UPDATE RESERVA SET ");
+            sql.append(" data_entrada = ?,");
+            sql.append(" data_saida = ?");
             sql.append(" WHERE id_reserva = ? ");
 
             PreparedStatement stmt = con.prepareStatement(sql.toString());
 
-            int index = 1;
-            if (reserva != null) {
-                if (reserva.getDataEntrada() != null) {
-                    stmt.setDate(index++, Date.valueOf(reserva.getDataEntrada()));
-                }
-            }
-            if (reserva.getDataSaida() != null) {
-                stmt.setDate(index++, Date.valueOf(reserva.getDataSaida()));
-            }
-            stmt.setInt(index++, id);
+            stmt.setDate(1, Date.valueOf(reserva.getDataEntrada()));
+            stmt.setDate(2, Date.valueOf(reserva.getDataSaida()));
+            stmt.setInt(3, id);
 
+            // Executa-se a consulta
             int res = stmt.executeUpdate();
             System.out.println("editarReserva.res=" + res);
+
             return res > 0;
         } catch (SQLException e) {
             throw new DBException(e.getMessage());
@@ -148,6 +135,7 @@ public class ReservaRepository implements Repositorio<Integer, Reserva> {
                 e.printStackTrace();
             }
         }
+
     }
 
     @Override
@@ -193,7 +181,6 @@ public class ReservaRepository implements Repositorio<Integer, Reserva> {
             }
         }
     }
-
     private Reserva getReservaFromResultSet(ResultSet res) throws SQLException {
         Reserva reserva = new Reserva();
         reserva.setIdReserva(res.getInt("id_reserva"));

@@ -58,11 +58,9 @@ public class Main {
                             hotel.setClassificacao(sc.nextInt());
 
                             hotelService.adicionarHotel(hotel);
-                            break;
                         }
                         case 2 -> {
                             hotelService.listarHoteis();
-                            break;
                         }
                         case 3 -> {
                             System.out.println("Qual hotel você deseja editar:");
@@ -86,7 +84,6 @@ public class Main {
                             hotelEditado.setClassificacao(sc.nextInt());
 
                             hotelService.editarHotel(indice, hotelEditado);
-                            break;
                         }
                         case 4 -> {
                             System.out.println("Qual hotel você deseja excluir?");
@@ -96,7 +93,7 @@ public class Main {
                             hotelService.removerHotel(id);
                         }
                         case 5 -> {
-                            break;
+
                         }
                     }
                 }
@@ -128,11 +125,9 @@ public class Main {
                             cliente.setSenha(sc.nextLine());
 
                             clienteService.adicionarCliente(cliente);
-                            break;
                         }
                         case 2 -> {
                             clienteService.listarClientes();
-                            break;
                         }
                         case 3 -> {
                             System.out.println("Qual cliente você deseja editar:");
@@ -159,7 +154,6 @@ public class Main {
                             clienteEditado.setSenha(sc.nextLine());
 
                             clienteService.editarCliente(id, clienteEditado);
-                            break;
                         }
                         case 4 -> {
                             System.out.println("Qual cliente você deseja excluir?");
@@ -169,7 +163,7 @@ public class Main {
                             clienteService.removerCliente(id);
                         }
                         case 5 -> {
-                            break;
+
                         }
                     }
                 }
@@ -334,7 +328,7 @@ public class Main {
 
                         }
                         case 5 -> {
-                            break;
+
                         }
                     }
 

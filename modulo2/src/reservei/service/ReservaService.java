@@ -2,6 +2,7 @@ package reservei.service;
 
 import reservei.exceptions.DBException;
 import reservei.model.Cliente;
+import reservei.model.Hotel;
 import reservei.model.Reserva;
 import reservei.model.ReservaPremium;
 import reservei.repository.ReservaRepository;
@@ -27,10 +28,10 @@ public class ReservaService {
             System.out.println(e.getMessage());
         }
     }
-    public void editarReserva(Integer indice, Reserva reserva) {
+    public void editarReserva(Integer id, Reserva reserva) {
         try {
-            boolean deuCerto = reservaRepository.editar(indice, reserva);
-            System.out.println("Edição concluída? " + deuCerto + "| com id=" + indice);
+            boolean deuCerto = reservaRepository.editar(id, reserva);
+            System.out.println("Edição concluída? " + deuCerto + "| com id=" + id);
         } catch (DBException e) {
             System.out.println(e.getMessage());
         }
@@ -51,7 +52,6 @@ public class ReservaService {
             System.out.println(e.getMessage());
         }
     }
-
     private Double calcularDiarias(Reserva reserva) {
         LocalDate d1 = LocalDate.parse(reserva.getDataEntrada().toString(), DateTimeFormatter.ISO_LOCAL_DATE);
         LocalDate d2 = LocalDate.parse(reserva.getDataSaida().toString(), DateTimeFormatter.ISO_LOCAL_DATE);
