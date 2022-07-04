@@ -1,6 +1,8 @@
 package reservei.service;
 
 import reservei.exceptions.DBException;
+import reservei.model.Hotel;
+import reservei.model.Quarto;
 import reservei.repository.HotelRepository;
 import reservei.repository.QuartoRepository;
 
@@ -25,5 +27,14 @@ public class QuartoService {
         } catch (DBException e) {
             System.out.println(e.getMessage());
         }
+    }
+    public Quarto quartoEscolhido(Integer id){
+        try {
+            Quarto quarto = quartoRepository.listarQuartosPorId(id).stream().findFirst().get();
+            return quarto;
+        }catch (DBException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

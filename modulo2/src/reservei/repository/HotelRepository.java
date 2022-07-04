@@ -191,6 +191,71 @@ public class HotelRepository implements Repositorio<Integer, Hotel> {
             }
         }
     }
+    public List<Hotel> listarHotelPorCidade(String cidade) throws DBException {
+        List<Hotel> hoteis = new ArrayList<>();
+        Connection con = null;
+        try {
+            con = ConexaoDB.getConnection();
+
+            String sql = "SELECT h.* " +
+                    "       FROM HOTEL h " +
+                    "      WHERE h.CIDADE = ? ";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, cidade);
+
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()) {
+                Hotel hotel = getHotelFromResultSet(res);
+                hoteis.add(hotel);
+            }
+            return hoteis;
+        } catch (SQLException e) {
+            throw new DBException(e.getMessage());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public List<Hotel> listarHotelPorId(Integer id) throws DBException {
+        List<Hotel> hoteis = new ArrayList<>();
+        Connection con = null;
+        try {
+            con = ConexaoDB.getConnection();
+
+            String sql = "SELECT h.* " +
+                    "       FROM HOTEL h " +
+                    "      WHERE h.ID_HOTEL = ? ";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()) {
+                Hotel hotel = getHotelFromResultSet(res);
+                hoteis.add(hotel);
+            }
+            return hoteis;
+        } catch (SQLException e) {
+            throw new DBException(e.getMessage());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private Hotel getHotelFromResultSet(ResultSet res) throws SQLException {
         Hotel hotel = new Hotel();
         hotel.setIdHotel(res.getInt("id_hotel"));

@@ -192,16 +192,17 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
         }
     }
 
-    public boolean validarCliente(String senha) {
+    public boolean validarCliente(String senha, String cpf) {
         Connection con = null;
         try {
             con = ConexaoDB.getConnection();
             String sql = "SELECT c.* " +
                     "FROM CLIENTE c " +
-                    "WHERE SENHA = ? ";
+                    "WHERE SENHA = ? AND CPF = ? ";
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, senha);
+            stmt.setString(2, cpf);
             int res = stmt.executeUpdate();
             return res > 0;
         } catch (SQLException e) {
@@ -217,10 +218,40 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
         }
         return false;
     }
+    public List<Cliente> listarClientePorCPF(String cpf) throws DBException {
+        List<Cliente> clientes = new ArrayList<>();
+        Connection con = null;
+        try {
+            con = ConexaoDB.getConnection();
 
+            String sql = "SELECT c.* " +
+                    "       FROM CLIENTE c " +
+                    "      WHERE c.CPF = ? ";
 
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, cpf);
 
-        private Cliente getClienteFromResultSet (ResultSet res) throws SQLException {
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()) {
+                Cliente cliente = getClienteFromResultSet(res);
+                clientes.add(cliente);
+            }
+            return clientes;
+        } catch (SQLException e) {
+            throw new DBException(e.getMessage());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private Cliente getClienteFromResultSet (ResultSet res) throws SQLException {
             Cliente cliente = new Cliente();
             cliente.setIdCliente(res.getInt("id_cliente"));
             cliente.setNome(res.getString("nome"));

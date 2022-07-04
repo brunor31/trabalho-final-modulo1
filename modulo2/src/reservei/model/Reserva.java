@@ -3,6 +3,8 @@ package reservei.model;
 import reservei.enums.TipoReserva;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Reserva {
@@ -11,17 +13,16 @@ public class Reserva {
     private Hotel hotel;
     private Quarto quarto;
     private Cliente cliente;
-    private Date dataEntrada;
-    private Date dataSaida;
+    private LocalDate dataEntrada;
+    private LocalDate dataSaida;
     private TipoReserva tipo;
     private Double valorReserva;
 
-    public static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public Reserva() {
     }
 
-    public Reserva(Integer idReserva, Hotel hotel, Quarto quarto, Cliente cliente, Date dataEntrada, Date dataSaida, TipoReserva tipo, Double valorReserva) {
+    public Reserva(Integer idReserva, Hotel hotel, Quarto quarto, Cliente cliente, LocalDate dataEntrada, LocalDate dataSaida, TipoReserva tipo, Double valorReserva) {
         this.idReserva = idReserva;
         this.hotel = hotel;
         this.quarto = quarto;
@@ -64,19 +65,18 @@ public class Reserva {
         this.cliente = cliente;
     }
 
-    public Date getDataEntrada() {
+    public LocalDate getDataEntrada() {
         return dataEntrada;
     }
-
-    public void setDataEntrada(Date dataEntrada) {
+    public void setDataEntrada(LocalDate dataEntrada) {
         this.dataEntrada = dataEntrada;
     }
 
-    public Date getDataSaida() {
+    public LocalDate getDataSaida() {
         return dataSaida;
     }
 
-    public void setDataSaida(Date dataSaida) {
+    public void setDataSaida(LocalDate dataSaida) {
         this.dataSaida = dataSaida;
     }
 
@@ -95,17 +95,17 @@ public class Reserva {
     public void setValorReserva(Double valorReserva) {
         this.valorReserva = valorReserva;
     }
-}
-    /*
+
     @Override
     public String toString() {
         return "IdReserva: " + idReserva +
                 "\nHotel: " + getHotel().getNome() +
                 "\nNúmero do Quarto: " + getQuarto().getNumero() +
                 "\nCliente: " + getCliente().getNome() +
-                "\nData de Entrada: " + sdf.format(dataEntrada) +
-                "\nData de Saída: " + sdf.format(dataSaida) +
-                "\nValor da Reserva: " + String.format("%.2f", calcularDiarias()) +
+                "\nData de Entrada: " + LocalDate.parse(dataEntrada.toString()) +
+                "\nData de Saída: " + LocalDate.parse(dataSaida.toString()) +
+                "\nTipo da Reserva: " + tipo.tipoString() +
+                "\nValor da Reserva: R$" + String.format("%.2f", valorReserva) +
                 "\n";
+    }
 }
-     */

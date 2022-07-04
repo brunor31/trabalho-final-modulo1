@@ -22,5 +22,10 @@ public enum TipoQuarto {
                 .findFirst()
                 .get();
     }
-
+    public String tipoString(){
+        if (type == 1){
+            return "Quarto Solteiro";
+        }
+        else return "Quarto Casal";
+    }
 }

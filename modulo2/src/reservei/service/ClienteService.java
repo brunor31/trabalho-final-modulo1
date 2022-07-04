@@ -54,9 +54,9 @@ public class ClienteService {
         }
     }
 
-    public boolean validarCliente(String senha){
+    public boolean validarCliente(String senha, String cpf){
         try{
-            if (clienteRepository.validarCliente(senha)){
+            if (clienteRepository.validarCliente(senha, cpf)){
                 System.out.println("Login efetuado com sucesso");
             }else{
                 System.out.println("Usuário não encontrado");
@@ -66,5 +66,14 @@ public class ClienteService {
             System.out.println(e.getMessage());
         }
         return false;
+    }
+    public Cliente clienteEscolhido(String cpf){
+        try {
+            Cliente cliente = clienteRepository.listarClientePorCPF(cpf).stream().findFirst().get();
+            return cliente;
+        }catch (DBException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

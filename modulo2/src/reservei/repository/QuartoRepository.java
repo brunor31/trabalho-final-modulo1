@@ -105,6 +105,38 @@ public class QuartoRepository implements Repositorio<Integer, Quarto> {
             }
         }
     }
+    public List<Quarto> listarQuartosPorId(Integer id) throws DBException {
+        List<Quarto> quartos = new ArrayList<>();
+        Connection con = null;
+        try {
+            con = ConexaoDB.getConnection();
+
+            String sql = "SELECT Q.* " +
+                    "       FROM QUARTO Q " +
+                    "      WHERE Q.ID_QUARTO = ? ";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()) {
+                Quarto quarto = getQuartoFromResultSet(res);
+                quartos.add(quarto);
+            }
+            return quartos;
+        } catch (SQLException e) {
+            throw new DBException(e.getMessage());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     private Quarto getQuartoFromResultSet(ResultSet res) throws SQLException {
         Quarto quarto = new Quarto();
         quarto.setIdQuarto(res.getInt("id_quarto"));

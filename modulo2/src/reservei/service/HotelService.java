@@ -54,7 +54,22 @@ public class HotelService {
             System.out.println(e.getMessage());
         }
     }
-
+    public void listarHotelPorCidade(String cidade) {
+        try {
+            hotelRepository.listarHotelPorCidade(cidade).forEach(System.out::println);
+        } catch (DBException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public Hotel hotelEscolhido(Integer id){
+        try {
+            Hotel hotel = hotelRepository.listarHotelPorId(id).stream().findFirst().get();
+           return hotel;
+        }catch (DBException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
     public void listarQuartosHotel(Hotel hotel){
         hotel.getQuartos().forEach(System.out::println);
     }

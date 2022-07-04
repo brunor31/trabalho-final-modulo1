@@ -5,9 +5,7 @@ import reservei.enums.TipoQuarto;
 public class Quarto {
 
     private Integer idQuarto;
-
     private Integer idHotel;
-
     private Integer numero;
     private TipoQuarto tipo;
     private Integer disponibilidade;
@@ -75,7 +73,7 @@ public class Quarto {
     public String toString() {
         return "IdQuarto: " + idQuarto +
                 "\nQuarto: " + numero +
-                "\nTipo: " + tipo.getType() +
+                "\nTipo: " + tipo.tipoString() +
                 "\nPreço da diária: " + String.format("%.2f", precoDiaria) +
                 "\n";
     }
